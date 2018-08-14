@@ -14,13 +14,12 @@ function Ship() {
     pop();
   }
   this.update = function () {
-    if (keyIsDown(LEFT_ARROW)) {
+    if (keyIsDown(LEFT_ARROW) && this.x + 30 > 0) {
       this.x -= this.speed;
     }
-    if (keyIsDown(RIGHT_ARROW)) {
+    if (keyIsDown(RIGHT_ARROW) && this.x + 50 < 800) {
       this.x += this.speed;
     }
-    
   }
 }
 

@@ -1,31 +1,19 @@
 
-
-function ShootUp () {
-  this.x = 400;
-  this.y = 580;
-  this.gravity = 0.8;
-  this.velocity = 0;
-
-  this.render = function() {
-    fill('orange');
-    ellipse(this.x,this.y,15)
-  }
-
-  this.shoot = function () {
-    this.velocity -= this.gravity
-    this.y += this.velocity
-  }
-}
-
-
 var row;
 var ship;
-var shootup;
+var shootup = [];
 function setup () {
   createCanvas(800,600); 
   ship = new Ship();
   row = new Row();
-  shootup = new ShootUp();
+}
+
+
+function keyPressed () {
+  if (keyCode == 32 ) {
+    shootup.push(new ShootUp(ship.x+40));
+  }
+  
 }
 
 function draw() {
@@ -34,9 +22,18 @@ function draw() {
   ship.render();
   ship.update();
   row.render();
-  shootup.render();
-  //shootup.shoot();
 
+  for (var i = 0; i <shootup.length ; i++) {
+    shootup[i].render();
+    shootup[i].shoot();
+
+    if (shootup[i].y < 0) {
+      shootup.splice(i,1);
+    }
+  }
+
+  
+  
 }
 
 

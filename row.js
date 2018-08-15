@@ -1,20 +1,24 @@
 function Row() {
-  let enemy = [];
+  this.enemy = [];
 
   for (var i = 0; i < 5; i++) {
-    enemy[i] = new Enemy(i*150);
+    this.enemy[i] = new Enemy(i*150);
   }
   
   this.render = function () {
 
-    for (var i = 0; i < enemy.length; i++) {
-      enemy[i].render();
-      enemy[i].move();
+    for (var i = 0; i < this.enemy.length; i++) {
+      this.enemy[i].render();
+      this.enemy[i].move();
+
+
+
+
     }
   
-    if( (enemy.length-1)*150 + enemy[enemy.length-1].speed > 720 || enemy[enemy.length-1].speed < 0 ){
-      for (var i = 0; i < enemy.length; i++) {
-        enemy[i].direction = enemy[i].direction*-1
+    if( (this.enemy.length-1)*150 + this.enemy[this.enemy.length-1].speed > 720 || this.enemy[this.enemy.length-1].speed < 0 ){
+      for (var i = 0; i < this.enemy.length; i++) {
+        this.enemy[i].direction = this.enemy[i].direction*-1
       }
     }
 

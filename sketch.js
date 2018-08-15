@@ -1,7 +1,5 @@
 
 
-
-
 var row;
 var ship;
 function setup () {
@@ -15,7 +13,6 @@ function draw() {
   ship.render();
   ship.update();
   row.render();
-
 }
 
 

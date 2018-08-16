@@ -10,7 +10,7 @@ function Enemy (x) {
         noStroke();
         push();
         fill('green')
-        rect(this.x+20+ this.speed,this.y-40,40,40)
+        rect(this.x+20+this.speed,this.y-40,40,40)
         pop();
         push();
         fill('yellow')

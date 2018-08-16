@@ -1,7 +1,29 @@
 
+function ShootDown (x) {
+  this.x = x;
+  this.y = 60;
+  this.speed = 10;
+
+  this.render = function () {
+    push();
+    fill('green');
+    ellipse (this.x, this.y, 15);
+    pop();
+  }
+
+  this.shoot = function() {
+    this.y += this.speed;
+  }
+}
+
+
+
+
+
 var row;
 var ship;
 var shootup = [];
+var shootdown = [];
 var numberofpressed = 0;
 var dashboard;
 function setup () {
@@ -9,16 +31,23 @@ function setup () {
   ship = new Ship();
   row = new Row();
   dashboard = new Dashboard();
+
+  
 }
 
 
 function keyPressed () {
   if (keyCode == 32 ) {
-    shootup.push(new ShootUp(ship.x+40));
+    shootup.push(new ShootUp(ship.x+30));
     numberofpressed += 1
   }
   
 }
+
+
+// function mousePressed() {
+  
+// }
 
 function draw() {
   background(0);
@@ -27,8 +56,6 @@ function draw() {
   ship.update();
   row.render();
   dashboard.render();
-
-
 
   for (var i = 0; i <shootup.length ; i++) {
     shootup[i].render();
@@ -39,8 +66,25 @@ function draw() {
     }
   }
 
+
   row.hit(shootup)
 
+
+
+
+  if (frameCount % 40 == 0) {
+    shootdown.push(new ShootDown(row.enemy[0].speed + 40 + 150*floor(round(random(0,4)))));
+  }
+
+  for (var i = 0; i < shootdown.length; i++) {
+  shootdown[i].render();
+  shootdown[i].shoot();
+
+    if (shootdown[i].y > 600) {
+      shootdown.splice(i,1);
+    }
+  }
+  
   
 }
 

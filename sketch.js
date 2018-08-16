@@ -1,24 +1,4 @@
 
-function ShootDown (x) {
-  this.x = x;
-  this.y = 60;
-  this.speed = 10;
-
-  this.render = function () {
-    push();
-    fill('green');
-    ellipse (this.x, this.y, 15);
-    pop();
-  }
-
-  this.shoot = function() {
-    this.y += this.speed;
-  }
-}
-
-
-
-
 
 var row;
 var ship;
@@ -26,6 +6,8 @@ var shootup = [];
 var shootdown = [];
 var numberofpressed = 0;
 var dashboard;
+var gotshot = 0;
+var speedofshot = 0;
 function setup () {
   createCanvas(1000,600); 
   ship = new Ship();
@@ -71,8 +53,12 @@ function draw() {
 
 //create shots randomly
 
-  if (frameCount % 40 == 0) {  // happens every 40 frames
+  if (frameCount % (40-speedofshot) == 0) {  // happens every 40 frames
     shootdown.push(new ShootDown(row.enemy[0].speed + 40 + 150*floor(round(random(0,4)))));
+  }
+
+  if (frameCount % 100 == 0 && speedofshot < 39) {  // increase speed of shot
+    speedofshot += 1;
   }
 
   for (var i = 0; i < shootdown.length; i++) {
@@ -88,7 +74,7 @@ function draw() {
 
 for (var i = 0; i < shootdown.length; i++) {
   if(shootdown[i].x + 7.5 < ship.x + 80 && shootdown[i].x -7.5  > ship.x && shootdown[i].y > 560 ) {
-    console.log('hit')
+    gotshot += 1;
     shootdown.splice(i,1);
   }
 }

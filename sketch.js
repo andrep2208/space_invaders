@@ -20,7 +20,7 @@ function setup () {
 
 function keyPressed () {
   if (keyCode == 32 ) {
-    shootup.push(new ShootUp(ship.x+30));
+    shootup.push(new ShootUp(ship.x+40));
     numberofpressed += 1
   }
   
@@ -54,7 +54,7 @@ function draw() {
 //create shots randomly
 
   if (frameCount % (40-speedofshot) == 0) {  // happens every 40 frames
-    shootdown.push(new ShootDown(row.enemy[0].speed + 40 + 150*floor(round(random(0,4)))));
+    shootdown.push(new ShootDown(row.enemy[0].speed + 40 + 150*floor(round(random(0,4))), row.enemy[0].y));
   }
 
   if (frameCount % 100 == 0 && speedofshot < 39) {  // increase speed of shot
@@ -73,7 +73,7 @@ function draw() {
 // check if enemy shot hit ship
 
 for (var i = 0; i < shootdown.length; i++) {
-  if(shootdown[i].x + 7.5 < ship.x + 80 && shootdown[i].x -7.5  > ship.x && shootdown[i].y > 560 ) {
+  if(shootdown[i].x - 7.5 < ship.x + 80 && shootdown[i].x  +7.5  > ship.x && shootdown[i].y > 560 ) {
     gotshot += 1;
     shootdown.splice(i,1);
   }

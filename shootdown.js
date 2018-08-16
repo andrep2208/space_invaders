@@ -1,7 +1,7 @@
 
-function ShootDown (x) {
+function ShootDown (x,y) {
     this.x = x;
-    this.y = 60;
+    this.y = y;
     this.speed = 10;
   
     this.render = function () {

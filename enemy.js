@@ -15,11 +15,15 @@ function Enemy (x) {
         push();
         fill('yellow')
         rect(this.x+60+ this.speed,this.y,20,20)
-        rect(this.x+ this.speed,this.y,20,20)
+        rect(this.x+this.speed,this.y,20,20)
         pop()
     }
 
   this.move = function () {
         this.speed = this.speed + this.direction;
+    }
+
+    this.closer = function () {
+        this.y += 10;
     }
 }

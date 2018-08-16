@@ -45,9 +45,7 @@ function keyPressed () {
 }
 
 
-// function mousePressed() {
-  
-// }
+
 
 function draw() {
   background(0);
@@ -71,8 +69,9 @@ function draw() {
 
 
 
+//create shots randomly
 
-  if (frameCount % 40 == 0) {
+  if (frameCount % 40 == 0) {  // happens every 40 frames
     shootdown.push(new ShootDown(row.enemy[0].speed + 40 + 150*floor(round(random(0,4)))));
   }
 
@@ -84,6 +83,19 @@ function draw() {
       shootdown.splice(i,1);
     }
   }
+
+// check if enemy shot hit ship
+
+for (var i = 0; i < shootdown.length; i++) {
+  if(shootdown[i].x + 7.5 < ship.x + 80 && shootdown[i].x -7.5  > ship.x && shootdown[i].y > 560 ) {
+    console.log('hit')
+    shootdown.splice(i,1);
+  }
+}
+
+
+
+
   
   
 }

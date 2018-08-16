@@ -2,16 +2,20 @@
 var row;
 var ship;
 var shootup = [];
+var numberofpressed = 0;
+var dashboard;
 function setup () {
-  createCanvas(800,600); 
+  createCanvas(1000,600); 
   ship = new Ship();
   row = new Row();
+  dashboard = new Dashboard();
 }
 
 
 function keyPressed () {
   if (keyCode == 32 ) {
     shootup.push(new ShootUp(ship.x+40));
+    numberofpressed += 1
   }
   
 }
@@ -22,6 +26,9 @@ function draw() {
   ship.render();
   ship.update();
   row.render();
+  dashboard.render();
+
+
 
   for (var i = 0; i <shootup.length ; i++) {
     shootup[i].render();
@@ -32,7 +39,8 @@ function draw() {
     }
   }
 
-  
+  row.hit(shootup)
+
   
 }
 
